@@ -2,22 +2,24 @@ package com.example.weatherapp.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.weatherapp.R
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.weatherapp.R
 import com.example.weatherapp.ui.theme.BlueLight
 
 @Preview(showBackground = true)
@@ -60,9 +62,58 @@ fun MainScreen() {
                     AsyncImage(
                         model = "https://cdn.weatherapi.com/weather/64x64/day/113.png",
                         contentDescription = "im2",
-                        modifier = Modifier.size(35.dp)
-                            .padding(top = 3.dp,end = 8.dp )
+                        modifier = Modifier
+                            .size(35.dp)
+                            .padding(top = 3.dp, end = 8.dp)
                     )
+                }
+                Text(
+                    text = "Zhlobin",
+                    style = TextStyle(fontSize = 24.sp),
+                    color = Color.White
+                )
+                Text(
+                    text = "+9 C",
+                    style = TextStyle(fontSize = 53.sp),
+                    color = Color.White
+                )
+                Text(
+                    text = "Winter",
+                    style = TextStyle(fontSize = 16.sp),
+                    color = Color.White
+                )
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    IconButton(
+                        onClick = {
+
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.search_24),
+                            contentDescription = "im3",
+                            tint = Color.White
+                        )
+                    }
+                    Text(
+                        text = "23C/12C",
+                        style = TextStyle(fontSize = 16.sp),
+                        color = Color.White
+                    )
+                    IconButton(
+                        onClick = {
+
+                        }
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R.drawable.cloud_sync_24),
+                            contentDescription = "im4",
+                            tint = Color.White
+                        )
+                    }
+
                 }
             }
         }
