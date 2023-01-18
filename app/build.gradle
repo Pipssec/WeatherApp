@@ -47,7 +47,8 @@ android {
 }
 
 dependencies {
-
+    implementation "com.google.accompanist:accompanist-pager:0.29.0-alpha"
+    implementation 'com.google.accompanist:accompanist-pager-indicators:0.29.0-alpha'
     implementation 'androidx.activity:activity-compose:1.6.1'
     implementation "androidx.compose.runtime:runtime:$compose_version"
     implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
