@@ -19,6 +19,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherAppTheme {
+                getData("Gomel", this)
                 Image(
                     painter = painterResource(id = R.drawable.weatherapp),
                     contentDescription = "im1",
