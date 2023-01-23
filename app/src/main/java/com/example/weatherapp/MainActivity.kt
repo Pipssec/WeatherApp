@@ -6,10 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import com.example.weatherapp.data.WeatherModel
 import com.example.weatherapp.screens.MainCard
 import com.example.weatherapp.screens.TabLayout
 import com.example.weatherapp.ui.theme.WeatherAppTheme
@@ -19,7 +22,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             WeatherAppTheme {
-                getData("Gomel", this)
+                val daysList = remember {
+                    mutableStateOf(listOf<WeatherModel>())
+                }
+                getData("Gomel", this, daysList)
                 Image(
                     painter = painterResource(id = R.drawable.weatherapp),
                     contentDescription = "im1",
@@ -30,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 )
                 Column {
                     MainCard()
-                    TabLayout()
+                    TabLayout(daysList)
                 }
             }
         }
