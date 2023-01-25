@@ -1,10 +1,12 @@
 package com.example.weatherapp.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,11 +18,14 @@ import com.example.weatherapp.data.WeatherModel
 import com.example.weatherapp.ui.theme.BlueLight
 
 @Composable
-fun ListItem(item: WeatherModel) {
+fun ListItem(item: WeatherModel, currentDays: MutableState<WeatherModel>) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 3.dp),
+            .padding(top = 3.dp).clickable {
+                if(item.hours.isEmpty()) return@clickable
+                currentDays.value = item
+            },
         backgroundColor = BlueLight,
         elevation = 0.dp,
         shape = RoundedCornerShape(5.dp)
@@ -44,7 +49,8 @@ fun ListItem(item: WeatherModel) {
                 )
             }
             Text(
-                text = item.currentTemp.ifEmpty { "${item.maxTemp}/${item.minTemp}" },
+                text = item.currentTemp.ifEmpty { "${item.maxTemp.toFloat().toInt()}°С/" +
+                        "${item.minTemp.toFloat().toInt()}°С" },
                 color = Color.White,
                 style = TextStyle(fontSize = 25.sp)
             )

@@ -10,19 +10,27 @@ import com.example.weatherapp.data.WeatherModel
 import org.json.JSONObject
 
 const val API_KEY = "6a2452adc45f4abab7b102625222112"
-fun getData(city: String, context: Context, daysList: MutableState<List<WeatherModel>>){
+fun getData(
+    city: String,
+    context: Context,
+    daysList: MutableState<List<WeatherModel>>,
+    currentDay: MutableState<WeatherModel>
+){
     val url = "https://api.weatherapi.com/v1/forecast.json?key=$API_KEY" +
             "&q=$city" +
             "&days=3" +
-            "&aqi=no&alerts=no"
+            "&aqi=no&alerts=no"+
+            "&lang=ru"
     val queue = Volley.newRequestQueue(context)
     val sRequest = StringRequest(
         Request.Method.GET,
         url,
         {
             response ->
-            val list = getWeatherByDays(response)
+            val resp = String(response.toByteArray(Charsets.ISO_8859_1), Charsets.UTF_8)
+            val list = getWeatherByDays(resp)
             daysList.value = list
+            currentDay.value = list[0]
         },
         {
             Log.d("MyLog", "VolleyError: $it")
