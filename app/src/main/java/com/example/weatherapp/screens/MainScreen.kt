@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.weatherapp.R
 import com.example.weatherapp.data.WeatherModel
@@ -28,7 +29,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 @Composable
-fun MainCard(currentDay: MutableState<WeatherModel>) {
+fun MainCard(currentDay: MutableState<WeatherModel>, navController: NavController) {
     Column(
         Modifier
             .padding(5.dp)
@@ -86,7 +87,7 @@ fun MainCard(currentDay: MutableState<WeatherModel>) {
                 ) {
                     IconButton(
                         onClick = {
-
+                            navController.navigate(route = Screen.Search.route)
                         }
                     ) {
                         Icon(

@@ -11,12 +11,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import com.example.weatherapp.R
 import com.example.weatherapp.data.WeatherModel
 import com.example.weatherapp.getData
 
 @Composable
-fun StartScreen(context: Context){
+fun StartScreen(context: Context,
+                navController: NavController
+                ){
     val daysList = remember {
         mutableStateOf(listOf<WeatherModel>())
     }
@@ -44,7 +47,7 @@ fun StartScreen(context: Context){
         contentScale = ContentScale.FillBounds,
     )
     Column {
-        MainCard(currentDay)
+        MainCard(currentDay, navController)
         TabLayout(daysList, currentDay)
     }
 }
