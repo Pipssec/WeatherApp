@@ -36,7 +36,8 @@ fun DialogSearch(
         },
         title = {
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Введите название города")
+                Text(text = "Введите название города\n" +
+                        "на латинице либо кирилице")
                 TextField(value = dialogText.value,
                     onValueChange = {
                         dialogText.value = it

@@ -16,7 +16,7 @@ import com.example.weatherapp.data.WeatherModel
 import com.example.weatherapp.getData
 
 @Composable
-fun StartScreen(context: Context){
+fun StartScreen(context: Context) {
     val currentDay = remember {
         mutableStateOf(
             WeatherModel(
@@ -31,8 +31,8 @@ fun StartScreen(context: Context){
             )
         )
     }
-    val dialogText = remember{
-        mutableStateOf("Жлобин")
+    val dialogText = remember {
+        mutableStateOf("Washington")
     }
     val daysList = remember {
         mutableStateOf(listOf<WeatherModel>())
@@ -40,14 +40,14 @@ fun StartScreen(context: Context){
     val dialogState = remember {
         mutableStateOf(false)
     }
-    if(dialogState.value){
+    if (dialogState.value) {
         DialogSearch(dialogState,
-                    dialogText,
-                    onSubmit = {
-                        getData(it, context, daysList, currentDay)
-                })
+            dialogText,
+            onSubmit = {
+                getData(it, context, daysList, currentDay)
+            })
     }
-    if(dialogText.value.length > 5){
+    if(dialogText.value.length > 9){
         getData(dialogText.value, context, daysList, currentDay)
     }
     Image(
@@ -60,14 +60,14 @@ fun StartScreen(context: Context){
     )
     Column {
         MainCard(currentDay,
-                onClickSync = {
-                    getData(dialogText.value, context, daysList, currentDay)
-                },
-                onClickSearch = {
-                    dialogState.value = true
-                    dialogText.value = ""
-                }
-            )
+            onClickSync = {
+                getData(dialogText.value, context, daysList, currentDay)
+            },
+            onClickSearch = {
+                dialogState.value = true
+                dialogText.value = ""
+            }
+        )
         TabLayout(daysList, currentDay)
     }
 }
