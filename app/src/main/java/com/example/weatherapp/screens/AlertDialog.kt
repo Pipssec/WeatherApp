@@ -11,7 +11,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 
 @Composable
-fun DialogSearch(dialogState: MutableState<Boolean>, dialogText : MutableState<String>, onSubmit: (String) -> Unit) {
+fun DialogSearch(
+    dialogState: MutableState<Boolean>,
+    dialogText: MutableState<String>,
+    onSubmit: (String) -> Unit
+) {
     AlertDialog(onDismissRequest = {
         dialogState.value = false
     },
@@ -20,26 +24,24 @@ fun DialogSearch(dialogState: MutableState<Boolean>, dialogText : MutableState<S
                 onSubmit(dialogText.value)
                 dialogState.value = false
             }) {
-                Text(text = "OK")
+                Text(text = "Ок")
             }
         },
         dismissButton = {
             TextButton(onClick = {
                 dialogState.value = false
             }) {
-                Text(text = "Cancel")
+                Text(text = "Отмена")
             }
         },
         title = {
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(text = "Введите название города")
                 TextField(value = dialogText.value,
-                          onValueChange = {
-                          dialogText.value = it
-                      })
+                    onValueChange = {
+                        dialogText.value = it
+                    })
             }
-
         }
-        
     )
 }
