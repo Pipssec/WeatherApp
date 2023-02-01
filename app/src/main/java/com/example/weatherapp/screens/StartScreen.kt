@@ -17,24 +17,39 @@ import com.example.weatherapp.getData
 
 @Composable
 fun StartScreen(context: Context){
-    val daysList = remember {
-        mutableStateOf(listOf<WeatherModel>())
-    }
     val currentDay = remember {
         mutableStateOf(
             WeatherModel(
-            "",
-            "",
-            "0",
-            "",
-            "",
-            "0",
-            "0",
-            "",
-        )
+                "",
+                "",
+                "0",
+                "",
+                "",
+                "0",
+                "0",
+                "",
+            )
         )
     }
-    getData("Gomel", context, daysList, currentDay)
+    val dialogText = remember{
+        mutableStateOf("Жлобин")
+    }
+    val daysList = remember {
+        mutableStateOf(listOf<WeatherModel>())
+    }
+    val dialogState = remember {
+        mutableStateOf(false)
+    }
+    if(dialogState.value){
+        DialogSearch(dialogState,
+                    dialogText,
+                    onSubmit = {
+                        getData(it, context, daysList, currentDay)
+                })
+    }
+    if(dialogText.value.length > 5){
+        getData(dialogText.value, context, daysList, currentDay)
+    }
     Image(
         painter = painterResource(id = R.drawable.weatherapp),
         contentDescription = "im1",
@@ -44,7 +59,15 @@ fun StartScreen(context: Context){
         contentScale = ContentScale.FillBounds,
     )
     Column {
-        MainCard(currentDay)
+        MainCard(currentDay,
+                onClickSync = {
+                    getData(dialogText.value, context, daysList, currentDay)
+                },
+                onClickSearch = {
+                    dialogState.value = true
+                    dialogText.value = ""
+                }
+            )
         TabLayout(daysList, currentDay)
     }
 }
