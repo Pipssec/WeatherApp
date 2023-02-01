@@ -1,2 +1,3 @@
 # WeatherApp
-Приложение прогноз погоды написанное на Jetpack Compose.
+# Приложение прогноз погоды
+# Stack: Jetpack Compose, Kotlin, Volley
