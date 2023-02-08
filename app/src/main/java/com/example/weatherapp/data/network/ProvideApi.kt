@@ -6,7 +6,7 @@ import androidx.compose.runtime.MutableState
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.weatherapp.data.WeatherModel
+import com.example.weatherapp.data.model.WeatherModel
 import org.json.JSONObject
 
 const val API_KEY = "6a2452adc45f4abab7b102625222112"

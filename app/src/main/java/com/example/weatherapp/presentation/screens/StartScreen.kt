@@ -1,4 +1,4 @@
-package com.example.weatherapp.screens
+package com.example.weatherapp.presentation.screens
 
 import android.content.Context
 import androidx.compose.foundation.Image
@@ -11,12 +11,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.weatherapp.R
-import com.example.weatherapp.data.WeatherModel
+import com.example.weatherapp.data.model.WeatherModel
 import com.example.weatherapp.getData
+import com.example.weatherapp.presentation.WeatherViewModel
 
 @Composable
-fun StartScreen(context: Context) {
+fun StartScreen(
+    context: Context,
+    weatherModel: WeatherViewModel = hiltViewModel()
+                ) {
     val currentDay = remember {
         mutableStateOf(
             WeatherModel(
